@@ -29,5 +29,5 @@ variable "vpc_id" {
 
 variable "description" {
   description = "Security group description."
-  type = string
+  type        = string
 }
