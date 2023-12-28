@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "us-west-2"  # Choose the appropriate AWS region
+  region = "us-west-2" # Choose the appropriate AWS region
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name  # Ensure this bucket name is unique
+  bucket = var.bucket_name # Ensure this bucket name is unique
 
   lifecycle {
     prevent_destroy = true
@@ -24,9 +24,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name           = var.dyname_db_table
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
+  name         = var.dyname_db_table
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
