@@ -19,6 +19,7 @@ variable "list_of_rules" {
     source_cidrs      = list(string)
     destination_cidrs = list(string)
     description       = string
+    security_group_ids = list(string)
   }))
 }
 
