@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "us-west-2" # Choose the appropriate AWS region
+  region = var.region
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = var.bucket_name # Ensure this bucket name is unique
+  bucket = var.bucket_name
 
   lifecycle {
     prevent_destroy = true
