@@ -24,8 +24,7 @@ pipeline {
                     sh 'ls ./'
                 }
             }
-        }
-     v      
+        }  
     }
 
 }
