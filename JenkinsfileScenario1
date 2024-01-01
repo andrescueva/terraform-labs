@@ -16,21 +16,22 @@ pipeline {
         }
     }
 
-    stages {
-        stage('Terraform init') {
-            steps {
-                container('terraform'){
-                    sh 'terraform -chdir=scenario1 init'
-                }
-            }
-        }  
+    stages { 
         stage('Terraform plan') {
             steps {
                 container('terraform'){
+                    sh 'terraform -chdir=scenario1 init'
                     sh 'terraform -chdir=scenario1 plan -out output --var-file=prod.tfvars'
                 }
             }
-        }  
+        }
+         stage('Terraform ls') {
+            steps {
+                container('terraform'){
+                    sh 'ls scenario1'
+                }
+            }
+        } 
     }
 
 }
