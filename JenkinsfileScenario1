@@ -21,7 +21,8 @@ pipeline {
             steps {
                 container('terraform'){
                     sh 'terraform -version'
-                    sh 'cd ./scenario1'
+                    sh 'cd scenario1'
+                    sh 'ls ./'
                     sh 'terraform init'
                 }
             }
