@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Pre') {
             steps {
+                sh 'cd scenario1'
                 sh 'ls ./ | echo AndresTesting'
             }
         }
