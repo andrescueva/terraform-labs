@@ -32,7 +32,7 @@ pipeline {
                     sh 'cd ./scenario1'
                     sh 'ls ./scenario1'
                     sh 'terraform init'
-                    sh 'terraform plan'
+                    sh 'terraform plan -out output --var-file=prod.tfvars'
                 }
             }
         }  
