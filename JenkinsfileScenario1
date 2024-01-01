@@ -20,20 +20,14 @@ pipeline {
         stage('Terraform init') {
             steps {
                 container('terraform'){
-                    sh 'terraform -version'
-                    sh 'cd scenario1'
-                    sh 'ls ./'
-                    sh 'terraform init'
+                    sh 'terraform -chdir=scenario1 init'
                 }
             }
         }  
         stage('Terraform plan') {
             steps {
                 container('terraform'){
-                    sh 'cd ./scenario1'
-                    sh 'ls ./scenario1'
-                    sh 'terraform init'
-                    sh 'terraform plan -out output --var-file=prod.tfvars'
+                    sh 'terraform -chdir=scenario1 plan -out output --var-file=prod.tfvars'
                 }
             }
         }  
