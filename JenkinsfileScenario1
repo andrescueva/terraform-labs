@@ -29,6 +29,7 @@ pipeline {
         stage('Terraform plan') {
             steps {
                 container('terraform'){
+                    sh 'ls ./'
                     sh 'cd ./scenario1'
                     sh 'terraform plan'
                 }
