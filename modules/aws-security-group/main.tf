@@ -26,7 +26,7 @@ resource "aws_security_group" "sg" {
       protocol    = egress.value.protocol
       cidr_blocks = egress.value.destination_cidrs
       description = egress.value.description
-      security_groups = ingress.value.security_group_ids
+      security_groups = egress.value.security_group_ids
     }
   }
 }
