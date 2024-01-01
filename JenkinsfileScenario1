@@ -16,12 +16,6 @@ pipeline {
         }
     }
 
-    environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws_access_key_id_devops')
-        AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key_devops')
-        AWS_DEFAULT_REGION    = 'us-west-2'
-    }
-
     stages {
         stage('Run maven') {
             steps {
@@ -31,24 +25,6 @@ pipeline {
             }
         }
 
-        stage('Initialize') {
-            steps {
-                sh 'terraform init'
-            }
-        }
-
-        stage('Plan') {
-            steps {
-                sh 'terraform plan -out=tfplan'
-            }
-        }
-
-        stage('Apply') {
-            steps {
-                input "Are you sure you want to apply this Terraform plan?"
-                sh 'terraform apply "tfplan"'
-            }
-        }
     }
 
 }
