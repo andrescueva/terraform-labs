@@ -31,6 +31,7 @@ pipeline {
                 container('terraform'){
                     sh 'ls ./scenario1'
                     sh 'cd ./scenario1'
+                    sh 'terraform init'
                     sh 'terraform plan'
                 }
             }
