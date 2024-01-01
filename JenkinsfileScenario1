@@ -6,8 +6,8 @@ pipeline {
             kind: Pod
             spec:
                 containers:
-                - name: maven
-                  image: maven:alpine
+                - name: terraform
+                  image: hashicorp/terraform:1.5.0
                   command: 
                   - cat
                   tty: true
@@ -17,11 +17,19 @@ pipeline {
     }
 
     stages {
-        stage('Run maven') {
+        stage('Terraform init') {
             steps {
-                container('maven'){
-                    sh 'mvn -version'
-                    sh 'ls ./'
+                container('terraform'){
+                    sh 'terraform -version'
+                    sh 'cd ./scenario1'
+                    sh 'terraform init'
+                }
+            }
+        }  
+        stage('Terraform plan') {
+            steps {
+                container('terraform'){
+                    sh 'terraform plan'
                 }
             }
         }  
