@@ -16,7 +16,7 @@ pipeline {
         }
     }
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('aws_secret_key_id_devops')
+        AWS_ACCESS_KEY_ID     = credentials('aws_access_key_id_devops')
         AWS_SECRET_ACCESS_KEY = credentials('aws_secret_access_key_devops')
     }
 
