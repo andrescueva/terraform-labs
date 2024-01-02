@@ -29,7 +29,12 @@ pipeline {
                 }
             }
         }
-         stage('Terraform ls') {
+        stage('Approve terraform apply') {
+            steps {
+                input "Do you want to apply changes?"
+            }
+        }
+        stage('Terraform apply') {
             steps {
                 container('terraform'){
                     sh 'terraform -chdir=scenario1 apply output'
