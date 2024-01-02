@@ -32,7 +32,7 @@ pipeline {
          stage('Terraform ls') {
             steps {
                 container('terraform'){
-                    sh 'ls scenario1'
+                    sh 'terraform -chdir=scenario1 apply output'
                 }
             }
         } 
