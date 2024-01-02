@@ -28,7 +28,10 @@ pipeline {
                         sh 'terraform -chdir=scenario1 init'
                         sh 'terraform workspace -or-create prod'
                         sh 'terraform -chdir=scenario1 plan -out output --var-file=prod.tfvars'
-                        input "Do you want to apply changes?"
+                        
+                    }
+                    input "Do you want to apply changes?"
+                    container('terraform'){
                         sh 'terraform -chdir=scenario1 apply output'
                     }
                 }
