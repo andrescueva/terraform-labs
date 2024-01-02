@@ -21,26 +21,20 @@ pipeline {
     }
 
     stages { 
-        stage('Terraform plan') {
-            steps {
-                container('terraform'){
-                    sh 'terraform -chdir=scenario1 init'
-                    sh 'terraform -chdir=scenario1 plan -out output --var-file=prod.tfvars'
+        stage('Deploy prod'){
+            if (env.BRANCH_NAME == 'main') {
+                steps {
+                    container('terraform'){
+                        sh 'terraform -chdir=scenario1 init'
+                        sh 'terraform workspace -or-create prod'
+                        sh 'terraform -chdir=scenario1 plan -out output --var-file=prod.tfvars'
+                        input "Do you want to apply changes?"
+                        sh 'terraform -chdir=scenario1 apply output'
+                    }
                 }
+            
             }
         }
-        stage('Approve terraform apply') {
-            steps {
-                input "Do you want to apply changes?"
-            }
-        }
-        stage('Terraform apply') {
-            steps {
-                container('terraform'){
-                    sh 'terraform -chdir=scenario1 apply output'
-                }
-            }
-        } 
     }
 
 }
